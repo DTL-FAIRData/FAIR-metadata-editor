@@ -1,2 +1,13 @@
 # FAIR-metadata-editor
-RDForms based editor for FAIR datapoint metadata
+FAIR metadata editor prototype.
+
+## Setup
+To get the development environment up and running, run the following:
+ 
+```
+npm install
+bower install
+gulp
+```
+
+The app is now served on <http://localhost:9000>
