@@ -1,9 +1,0 @@
-<a class="dropdown-toggle" data-toggle="dropdown" href>
-    {{item.label}} <span class="caret" ng-if="item.children"></span>
-</a>
-
-<ul class="dropdown-menu" ng-if="item.children">
-    <li ng-repeat="child in item.children">
-        <a href ng-click="show(child)">{{child.uri}}</a>
-    </li>
-</ul>
