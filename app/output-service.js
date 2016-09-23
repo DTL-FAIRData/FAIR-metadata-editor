@@ -1,38 +1,51 @@
 app.service('Output', function($q) {
   return {
-    write: function(model, schema, type) {
+    write : function(model, schema, type) {
       var deferred = $q.defer();
 
       var writer = N3.Writer({
-        prefixes: {
-          'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
-          'dcterms': 'http://purl.org/dc/terms/',
-          'dcat': 'http://www.w3.org/ns/dcat#',
-          'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',
-          'foaf': 'http://xmlns.com/foaf/0.1/'
+        prefixes : {
+          'rdf' : 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+          'dcterms' : 'http://purl.org/dc/terms/',
+          'dcat' : 'http://www.w3.org/ns/dcat#',
+          'rdfs' : 'http://www.w3.org/2000/01/rdf-schema#',
+          'foaf' : 'http://xmlns.com/foaf/0.1/'
         }
       });
       writer.addTriple({
-        subject: '',
-        predicate: 'rdf:type',
-        object: type
+        subject : '',
+        predicate : 'rdf:type',
+        object : type
       });
 
-      for (var key in model) {
+      for ( var key in model) {
         var meta = schema.properties[key];
         var type = meta.rdftype;
 
         var object = model[key];
+        console.log("object == ", object);
         if (object !== undefined && object.length !== 0) {
-          if (meta.rdftype === 'literal') {
-            object = '"' + object + '"';
+          var values = []
+          if (object.constructor === Array) {  
+            for ( var i in object) {
+              values.push(object[i])
+            }
           }
-
-          writer.addTriple({
-            subject: '',
-            predicate: meta.uri,
-            object: object
-          });
+          else {
+            values.push(object)
+          }
+          for ( var i in values) {
+            var val = values[i]
+            if (meta.rdftype === 'literal') {
+              val = '"' + val + '"';
+            }
+            writer.addTriple({
+              subject : '',
+              predicate : meta.uri,
+              object : val
+            });
+          }
+          
         }
       }
 
