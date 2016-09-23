@@ -40,7 +40,7 @@
         "language": {
             "type": "string",
             "uri": "http://purl.org/dc/terms/language",
-            "rdftype": "literal"
+            "rdftype": "uri"
         },
         "license": {
             "type": "string",
@@ -56,6 +56,14 @@
             "type": "string",
             "uri": "http://www.w3.org/2000/01/rdf-schema#label",
             "rdftype": "literal"
+        },        
+        "themeTaxonomy": {
+            "type": "array",
+            "uri": "http://www.w3.org/ns/dcat#themeTaxonomy",
+            "rdftype": "uri",
+            "items": {
+                "type": "string"
+            }
         },
         "homepage": {
             "type": "string",
@@ -69,14 +77,9 @@
             "items": {
                 "type": "string"
             }
-        },
-        "themeTaxonomy": {
-            "type": "string",
-            "uri": "http://www.w3.org/ns/dcat#themeTaxonomy",
-            "rdftype": "uri"
         }
     },
     "required": [
-        "title", "identifier", "issued", "modified", "hasVersion", "label", "dataset", "themeTaxonomy"
+        "title", "identifier", "issued", "modified", "hasVersion", "label", "themeTaxonomy"
     ]
 }

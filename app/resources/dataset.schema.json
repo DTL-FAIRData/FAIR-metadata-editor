@@ -40,7 +40,7 @@
         "language": {
             "type": "string",
             "uri": "http://purl.org/dc/terms/language",
-            "rdftype": "literal"
+            "rdftype": "uri"
         },
         "license": {
             "type": "string",
@@ -57,18 +57,13 @@
             "uri": "http://www.w3.org/2000/01/rdf-schema#label",
             "rdftype": "literal"
         },
-        "distribution": {
+        "theme": {
             "type": "array",
-            "uri": "http://www.w3.org/ns/dcat#distribution",
+            "uri": "http://www.w3.org/ns/dcat#theme",
             "rdftype": "uri",
             "items": {
                 "type": "string"
             }
-        },
-        "theme": {
-            "type": "string",
-            "uri": "http://www.w3.org/ns/dcat#theme",
-            "rdftype": "uri"
         },
         "contactPoint": {
             "type": "string",
@@ -76,17 +71,28 @@
             "rdftype": "literal"
         },
         "keyword": {
-            "type": "string",
+            "type": "array",
             "uri": "http://www.w3.org/ns/dcat#keyword",
-            "rdftype": "literal"
+            "rdftype": "literal",
+            "items": {
+                "type": "string"
+            }
         },
         "landingPage": {
             "type": "string",
             "uri": "http://www.w3.org/ns/dcat#landingPage",
             "rdftype": "uri"
+        },        
+        "distribution": {
+            "type": "array",
+            "uri": "http://www.w3.org/ns/dcat#distribution",
+            "rdftype": "uri",
+            "items": {
+                "type": "string"
+            }
         }
     },
     "required": [
-        "title", "identifier", "issued", "modified", "hasVersion", "label", "distribution", "theme"
+        "title", "identifier", "issued", "modified", "hasVersion", "label", "theme"
     ]
 }

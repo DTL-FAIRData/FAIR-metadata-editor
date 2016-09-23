@@ -18,13 +18,13 @@ app.controller('CatalogCtrl', function($scope, $http, Output) {
     hasVersion: '1.0',
     description: 'This is an example catalog',
     publisher: 'http://www.dtls.nl',
-    language: 'en',
+    language: 'http://id.loc.gov/vocabulary/iso639-1/en',
     license: 'http://purl.org/NET/rdflicense/MIT1.0',
-    rights: 'some rights',
+    rights: 'http://dev.rdf.biosemantics.org/examples/rights',
     label: 'Example catalog',
     homepage: 'http://example.com/catalog',
-    dataset: ['foo-dataset', 'bar-dataset'],
-    themeTaxonomy: ''
+    dataset: [],
+    themeTaxonomy: ['http://dev.rdf.biosemantics.org/examples/themeTax1', 'http://dev.rdf.biosemantics.org/examples/themeTax2']
   };
 
   $scope.example = function() {

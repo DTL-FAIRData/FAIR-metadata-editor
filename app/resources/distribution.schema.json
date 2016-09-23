@@ -40,7 +40,7 @@
         "language": {
             "type": "string",
             "uri": "http://purl.org/dc/terms/language",
-            "rdftype": "literal"
+            "rdftype": "uri"
         },
         "license": {
             "type": "string",
@@ -70,7 +70,7 @@
         "mediaType": {
             "type": "string",
             "uri": "http://www.w3.org/ns/dcat#mediaType",
-            "rdftype": "uri"
+            "rdftype": "literal"
         },
         "format": {
             "type": "string",

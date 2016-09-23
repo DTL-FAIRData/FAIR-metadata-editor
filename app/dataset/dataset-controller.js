@@ -18,14 +18,14 @@ app.controller('DatasetCtrl', function($scope, $http, Output) {
     hasVersion: '1.0',
     description: 'This is an example dataset',
     publisher: 'http://www.dtls.nl',
-    language: 'en',
+    language: 'http://id.loc.gov/vocabulary/iso639-1/en',
     license: 'http://purl.org/NET/rdflicense/MIT1.0',
-    rights: 'some rights',
+    rights: 'http://dev.rdf.biosemantics.org/examples/rights',
     label: 'Example dataset',
-    distribution: ['distribution-turtle', 'distribution-html'],
-    theme: '',
+    distribution: [],
+    theme: ['http://dev.rdf.biosemantics.org/examples/theme1', 'http://dev.rdf.biosemantics.org/examples/theme2'],
     contactPoint: 'info@example.com',
-    keyword: 'FAIR, Example, Dataset',
+    keyword: ['FAIR, Example, Dataset'],
     landingPage: 'http://example.com/dataset/index.html'
   };
 
