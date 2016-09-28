@@ -4,6 +4,10 @@ app.config(function($routeProvider) {
       templateUrl: 'home/home.html',
       controller: 'HomeCtrl'
     })
+    .when('/repository', {
+      templateUrl: 'repository/repository.html',
+      controller: 'RepositoryCtrl'
+    })
     .when('/catalog', {
       templateUrl: 'catalog/catalog.html',
       controller: 'CatalogCtrl'
