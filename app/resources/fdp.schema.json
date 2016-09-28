@@ -15,12 +15,14 @@
         "issued": {
             "type": "string",
             "uri": "http://purl.org/dc/terms/issued",
-            "rdftype": "literal"
+            "rdftype": "literal",
+            "readonly": "true"
         },
         "modified": {
             "type": "string",
             "uri": "http://purl.org/dc/terms/modified",
-            "rdftype": "literal"
+            "rdftype": "literal",
+            "readonly": "true"
         },
         "hasVersion": {
             "type": "string",
@@ -58,7 +60,13 @@
             "rdftype": "literal"
         },
         "catalog": {
-            "type": "string"
+            "type": "array",
+            "uri": "http://www.w3.org/ns/ldp#contains",
+            "rdftype": "uri",
+            "readonly": "true",
+            "items": {
+                "type": "string"
+            }
         }
     },
     "required": ["title"]
