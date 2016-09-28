@@ -27,7 +27,8 @@ gulp.task('index', ['js', 'vendor'], function() {
 
 gulp.task('resources', function() {
   return gulp.src('app/resources/*')
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('build'))
+    .pipe($.connect.reload());
 });
 
 gulp.task('vendor', function() {
