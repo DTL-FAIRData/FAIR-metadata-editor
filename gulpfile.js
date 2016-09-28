@@ -66,4 +66,6 @@ gulp.task('connect', function() {
   });
 });
 
-gulp.task('default', ['index', 'resources', 'watch', 'connect']);
+gulp.task('dist', ['index', 'resources']);
+
+gulp.task('default', ['dist', 'watch', 'connect']);
