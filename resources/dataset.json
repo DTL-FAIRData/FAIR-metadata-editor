@@ -1,0 +1,195 @@
+{
+    "title": "Dataset",
+    "type": "http://www.w3.org/ns/dcat#Dataset",
+    "namespaces": {
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "dct": "http://purl.org/dc/terms/",
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "fdp": "http://rdf.biosemantics.org/ontologies/fdp-o#",
+        "datacite": "http://purl.org/spar/datacite/"
+    },
+    "components": {
+        "dct-title": {
+            "name": "Title",
+            "url": "http://purl.org/dc/terms/title",
+            "type": "text",
+            "description": "A name given to the dataset.",
+            "required": true
+        },
+        "dct-identifier": {
+            "name": "Identifier",
+            "url": "http://purl.org/dc/terms/identifier",
+            "type": "text",
+            "description": "A unique identifier of the dataset.",
+            "required": true
+        },
+        "dct-issued": {
+            "name": "Release date",
+            "url": "http://purl.org/dc/terms/issued",
+            "type": "text",
+            "description": "Date of formal issuance (e.g., publication) of the dataset.",
+            "required": true,
+            "generated": true
+        },
+        "dct-modified": {
+            "name": "Update/modification date",
+            "url": "http://purl.org/dc/terms/modified",
+            "type": "text",
+            "description": "Most recent date on which the dataset was changed, updated or modified.",
+            "required": true,
+            "generated": true
+        },
+        "dct-hasversion": {
+            "name": "Has version",
+            "url": "http://purl.org/dc/terms/hasVersion",
+            "type": "text",
+            "description": "The version number for this resource",
+            "required": true
+        },
+        "dct-publisher": {
+            "name": "Publisher",
+            "url": "http://purl.org/dc/terms/publisher",
+            "type": "url",
+            "description": "An entity responsible for making the dataset available.",
+            "multiple": true,
+            "required": true
+        },
+        "dct-description": {
+            "name": "Description",
+            "url": "http://purl.org/dc/terms/description",
+            "type": "text",
+            "description": "free-text account of the dataset.",
+            "required": false
+        },
+        "dct-language": {
+            "name": "Language",
+            "url": "http://purl.org/dc/terms/language",
+            "type": "url",
+            "description": "The language of the dataset.",
+            "multiple": true,
+            "required": false,
+            "autocomplete": {
+                "source": "language.json"
+            }
+        },
+        "dct-license": {
+            "name": "License",
+            "url": "http://purl.org/dc/terms/license",
+            "type": "url",
+            "description": "License indication for this resource",
+            "required": false,
+            "autocomplete": {
+                "source": "license.json"
+            }
+        },
+        "dct-rights": {
+            "name": "Rights",
+            "url": "http://purl.org/dc/terms/rights",
+            "type": "url",
+            "description": "Rights document for this resource",
+            "required": false
+        },
+        "rdfs-label": {
+            "name": "Label",
+            "url": "http://www.w3.org/2000/01/rdf-schema#label",
+            "type": "text",
+            "description": "Label that indicates the thing",
+            "required": false,
+            "duplicate": "dct-title"
+        },
+        "dcat-distribution": {
+            "name": "Distribution",
+            "url": "http://www.w3.org/ns/dcat#distribution",
+            "type": "url",
+            "description": "Connects a dataset to its available distributions.",
+            "multiple": true,
+            "required": true,
+            "generated": true
+        },
+        "dcat-theme": {
+            "name": "Theme",
+            "url": "http://www.w3.org/ns/dcat#theme",
+            "type": "url",
+            "description": "The main category of the dataset. A dataset can have multiple themes.",
+            "multiple": true,
+            "required": true,
+            "autocomplete": {
+                "api": {
+                    "endpoint": "https://cors-anywhere.herokuapp.com/https://www.wikidata.org/w/api.php",
+                    "inputparam": "search",
+                    "params": {
+                        "action": "wbsearchentities",
+                        "language": "en",
+                        "format": "json"
+                    },
+                    "response": {
+                        "root": "search",
+                        "props": {
+                            "label": "label",
+                            "concepturi": "url"
+                        }
+                    }
+                }
+            }
+        },
+        "dcat-contactpoint": {
+            "name": "Contact point",
+            "url": "http://www.w3.org/ns/dcat#contactPoint",
+            "type": "url",
+            "description": "Link a dataset to relevant contact information which is provided using VCard.",
+            "required": false
+        },
+        "dcat-keyword": {
+            "name": "Keyword",
+            "url": "http://www.w3.org/ns/dcat#keyword",
+            "type": "text",
+            "description": "A keyword or tag describing the dataset.",
+            "multiple": true,
+            "required": false
+        },
+        "dcat-landingpage": {
+            "name": "Landing page",
+            "url": "http://www.w3.org/ns/dcat#landingPage",
+            "type": "url",
+            "description": "A Web page that can be navigated to in a Web browser to gain access to the dataset, its distributions and/or additional information.",
+            "required": false
+        },
+        "fdp-metadataidentifier": {
+            "name": "Metadata identifier",
+            "url": "fdp#metadataIdentifier",
+            "type": "url",
+            "description": "Identifier of the metadata entry",
+            "required": true,
+            "nested": {
+                "type": "http://purl.org/spar/datacite/ResourceIdentifier",
+                "components": {
+                    "metadata-dct-identifier": {
+                        "name": "Identifier",
+                        "url": "http://purl.org/dc/terms/identifier",
+                        "type": "text",
+                        "description": "Unique identifier for this resource",
+                        "required": true
+                    }
+                }
+            }
+        },
+        "fdp-metadataissued": {
+            "name": "Release date",
+            "url": "http://rdf.biosemantics.org/ontologies/fdp-o#metadataIssued",
+            "type": "text",
+            "description": "Date of formal issuance (e.g., publication) of the repository.",
+            "required": true,
+            "generated": true
+        },
+        "fdp-metadatamodified": {
+            "name": "Update/modification date",
+            "url": "http://rdf.biosemantics.org/ontologies/fdp-o#metadataModified",
+            "type": "text",
+            "description": "Most recent date on which the repository was changed, updated or modified.",
+            "required": true,
+            "generated": true
+        }
+    }
+}

@@ -1,9 +1,13 @@
 {
-  "name": "FAIR-metadata-editor",
-  "description": "Editor for the FAIR Datapoint metadata",
-  "main": "index.js",
+  "name": "ng-metadata-editor",
+  "description": "angular metadata editor",
+  "main": "app.js",
   "license": "MIT",
-  "homepage": "https://github.com/DTL-FAIRData/FAIR-metadata-editor",
+  "keywords": [
+    "FAIR",
+    "editor"
+  ],
+  "homepage": "",
   "private": true,
   "ignore": [
     "**/.*",
@@ -15,15 +19,7 @@
   "dependencies": {
     "angular": "^1.5.8",
     "angular-route": "^1.5.8",
-    "bootstrap": "^3.3.7",
-    "angular-schema-form": "^0.8.13",
-    "n3": "RubenVerborgh/N3-Bower#^0.5.0"
-  },
-  "overrides": {
-    "angular": {
-      "dependencies": {
-        "jquery": "*"
-      }
-    }
+    "n3": "RubenVerborgh/N3-Bower#^0.5.0",
+    "angular-bootstrap": "^2.2.0"
   }
 }

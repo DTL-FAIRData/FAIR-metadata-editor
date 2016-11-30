@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-strict-di>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- inject:css -->
+        <link rel="stylesheet" href="app.css">
+        <!-- endinject -->
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand">Metadata Editor</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="#/view">Viewer</a></li>
+                    <li><a href="#/edit">Editor</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid" ng-view></div>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="https://code.angularjs.org/1.5.8/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
+        <script src="https://code.angularjs.org/1.5.8/angular-sanitize.min.js"></script>
+        <!-- inject:js -->
+        <script src="lib/ui-bootstrap.min.js"></script>
+        <script src="lib/ui-bootstrap-tpls.min.js"></script>
+        <script src="lib/n3-browser.js"></script>
+        <script src="app.js"></script>
+        <!-- endinject -->
+    </body>
+</html>

@@ -1,0 +1,87 @@
+<div class="form-group">
+    <label ng-attr-for="{{fid}}"
+        class="col-sm-2 control-label">
+        <span ng-class="{'optional-control-label':!field.required, 'generated-control-label':field.generated}">{{field.name}}</span>
+    </label>
+
+    <div class="col-sm-10">
+        <input ng-if="!field.multiple && !field.autocomplete && !field.nested"
+            class="form-control"
+            ng-attr-name="{{fid}}"
+            ng-attr-type="{{field.type}}"
+            ng-attr-id="{{fid}}"
+            ng-model="mymodel[field.url]"
+            ng-focus="triggerHelp(field)"
+            ng-required="field.required"
+            ng-disabled="isDisabled(field)"/>
+
+        <input ng-if="field.nested"
+            class="form-control"
+            ng-attr-name="{{fid}}"
+            ng-attr-type="{{field.type}}"
+            ng-attr-id="{{fid}}"
+            ng-focus="triggerHelp(field)"
+            ng-required="field.required"
+            ng-model="mymodel[field.url].url"/>
+
+        <field-autocomplete
+            ng-if="!field.multiple && field.autocomplete"
+            field="field"
+            fid="fid"
+            mdl="mymodel[field.url]">
+        </field-autocomplete>
+
+        <div ng-if="field.multiple"
+                class="row"
+                ng-repeat="value in mymodel[field.url] track by $index">
+            <div class="col-md-11">
+                <input ng-if="field.autocomplete === undefined"
+                    class="form-control"
+                    ng-attr-type="{{field.type}}"
+                    ng-attr-id="{{fid + '-' + $index}}"
+                    ng-model="mymodel[field.url][$index]"
+                    ng-focus="triggerHelp(field)"/>
+                
+                <field-autocomplete
+                    ng-if="field.autocomplete !== undefined"
+                    field="field"
+                    fid="fid + '-' + $index"
+                    mdl="mymodel[field.url][$index]">
+                </field-autocomplete>
+                
+                <span ng-if="!$last">&nbsp;</span>
+            </div>
+
+            <div class="col-md-1">
+                <a href ng-click="remove(mymodel[field.url], $index)">
+                    <span class="glyphicon glyphicon-minus-sign"></span>
+                </a>
+            </div>
+        </div>
+
+        <a ng-if="field.multiple" href ng-click="add()">
+            <span class="glyphicon glyphicon-plus-sign"></span>
+        </a>
+        
+        <a href ng-attr-data-target="{{'#' + fid + '-desc'}}" data-toggle="collapse">
+            <span class="glyphicon glyphicon-info-sign"></span>
+        </a>
+
+        <a ng-if="field.nested" href ng-click="toggleCollapse()">
+            <span ng-class="{glyphicon:true, 'glyphicon-collapse-down':!nestedcollapse, 'glyphicon-collapse-up':nestedcollapse}"></span>
+        </a>
+
+        <div class="collapse" ng-attr-id="{{fid + '-desc'}}">
+            <div class="well">{{field.description}}</div>
+        </div>
+    </div>
+
+    <div class="row" ng-repeat="(id,fld) in field.nested.components">
+        <field-nested
+            ng-show="nestedcollapse"
+            field="fld"
+            fid="id"
+            mdl="mymodel[field.url]">
+        </field-nested>
+    </div>
+</div>

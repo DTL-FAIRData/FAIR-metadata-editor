@@ -1,0 +1,15 @@
+<input class="form-control has-feedback"
+    ng-attr-type="{{field.type}}"
+    ng-attr-id="{{fid}}"
+    ng-model="mdl"
+    ng-focus="triggerhelp(field)"
+
+    uib-typeahead="result.label for result in getResults(field, $viewValue)"
+    typeahead-loading="resourceLoading"
+    typeahead-wait-ms="200"
+    typeahead-min-length="2"
+    typeahead-on-select="selectResult($item, field, $index)"/>
+
+<span ng-show="resourceLoading"
+    class="form-control-feedback spinner">
+</span>

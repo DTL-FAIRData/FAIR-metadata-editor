@@ -1,0 +1,46 @@
+<div class="row">
+    <ul class="nav nav-tabs">
+        <li>&nbsp;</li>
+        <li ng-class="{active: path=='fdp'}"><a href="#/edit?layer=fdp">Datapoint</a></li>
+        <li ng-class="{active: path=='catalog'}"><a href="#/edit?layer=catalog">Catalog</a></li>
+        <li ng-class="{active: path=='dataset'}"><a href="#/edit?layer=dataset">Dataset</a></li>
+        <li ng-class="{active: path=='distrib'}"><a href="#/edit?layer=distrib">Distribution</a></li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="pull-right">
+            <a href ng-click="showOptionals=!showOptionals">
+                <span ng-if="showOptionals">Hide</span><span ng-if="!showOptionals">Show</span>&nbsp;optionals
+            </a>
+            <br>
+            <a href ng-click="showGenerated=!showGenerated">
+                <span ng-if="showGenerated">Hide</span><span ng-if="!showGenerated">Show</span>&nbsp;generated fields
+            </a>
+        </div>
+
+        <h1>{{schema.title}}</h1>
+
+        <form class="form-horizontal" name="form">
+            <field ng-repeat="(id,field) in schema.components"
+                fid="id"
+                field="field"
+                mymodel="mymodel"
+                schema="schema"
+                ng-if="showGenerated || !field.generated"
+                ng-show="field.required || showOptionals">
+            </field>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <uib-tabset active="active">
+            <uib-tab heading="Preview">
+                <preview ng-if="schema"></preview>
+            </uib-tab>
+            <uib-tab heading="Help">
+                <help></help>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>

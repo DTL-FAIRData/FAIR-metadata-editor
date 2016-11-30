@@ -1,0 +1,11 @@
+<span ng-if="!field">Select a field to see more information</span>
+
+<div ng-if="field.description">
+    <h4>Description</h4>
+    <p>{{field.description}}</p>
+</div>
+
+<div ng-if="field.examples">
+    <h4>Examples</h4>
+    <p ng-repeat="example in field.examples">{{example}}</p>
+</div>

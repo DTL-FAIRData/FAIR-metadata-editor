@@ -3,65 +3,66 @@ var gulp = require('gulp'),
   merge = require('merge-stream');
 
 gulp.task('js', function() {
-  var js = gulp.src('app/**/*.js');
-  var html = gulp.src('app/**/!(index)*.html')
+  var js = gulp.src('src/**/*.js');
+  var html = gulp.src('src/**/!(index)*.html')
     .pipe($.angularTemplatecache({standalone: true}));
 
   return merge(js, html)
+    .pipe($.jshint())
+    .pipe($.jshint.reporter('default'))
     .pipe($.concat('app.js'))
     .pipe($.ngAnnotate())
-    .pipe($.insert.wrap('(function(){"use strict";', '})();'))
-    .pipe(gulp.dest('build'))
+    .pipe(gulp.dest('dist'))
     .pipe($.connect.reload());
 });
 
-gulp.task('index', ['js', 'vendor'], function() {
-  return gulp.src('app/index.html')
-    .pipe($.inject(
-      gulp.src(['build/vendor.*', 'build/app.*'], {read: false}),
-      {addRootSlash: false, ignorePath: 'build'}
-    ))
-    .pipe(gulp.dest('build'))
+gulp.task('lib', function() {
+  return gulp.src([
+      'bower_components/angular-bootstrap/ui-bootstrap.min.js',
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+      'bower_components/n3/n3-browser.js'])
+    .pipe(gulp.dest('dist/lib'));
+});
+
+gulp.task('css', function() {
+  return gulp.src('src/**/*.css')
+    .pipe($.concat('app.css'))
+    .pipe(gulp.dest('dist'))
     .pipe($.connect.reload());
 });
 
 gulp.task('resources', function() {
-  return gulp.src('app/resources/*')
-    .pipe(gulp.dest('build'))
+  return gulp.src('resources/**')
+    .pipe(gulp.dest('dist'))
     .pipe($.connect.reload());
 });
 
-gulp.task('vendor', function() {
-  var css = gulp.src('bower_components/**/*.min.css')
-    .pipe($.using())
-    .pipe($.concat('vendor.css'))
-    .pipe(gulp.dest('build'));
+gulp.task('index', ['js', 'lib', 'css'], function() {
+  var res = gulp.src([
+    'dist/lib/ui-bootstrap.min.js',
+    'dist/lib/ui-bootstrap-tpls.min.js',
+    'dist/lib/n3-browser.js',
+    'dist/*.js',
+    'dist/*.css'], {read: false});
 
-  var fonts = gulp.src('bower_components/**/dist/fonts/*')
-    .pipe($.using())
-    .pipe($.flatten())
-    .pipe(gulp.dest('build/fonts'));
-
-  var js = gulp.src('bower.json')
-    .pipe($.mainBowerFiles('**/*.js'))
-    .pipe($.using())
-    .pipe($.concat('vendor.js'))
-    .pipe(gulp.dest('build'));
-
-  return merge(js, css, fonts);
+  return gulp.src('src/index.html')
+    .pipe($.inject(res, {addRootSlash: false, ignorePath: 'dist'}))
+    .pipe(gulp.dest('dist'))
+    .pipe($.connect.reload());
 });
 
 gulp.task('watch', function() {
-  gulp.watch('app/**/*.js', ['js']);
-  gulp.watch('app/resources/*', ['resources']);
-  gulp.watch('app/**/!(index)*.html', ['js'])
-  gulp.watch('app/index.html', ['index']);
+  gulp.watch('src/**/*.js', ['js']);
+  gulp.watch('src/**/!(index)*.html', ['js']);
+  gulp.watch('src/**/*.css', ['css']);
+  gulp.watch('src/index.html', ['index']);
+  gulp.watch('resources/**', ['resources']);
 });
 
 gulp.task('connect', function() {
   return $.connect.server({
     port: 9000,
-    root: 'build',
+    root: 'dist',
     livereload: true
   });
 });
