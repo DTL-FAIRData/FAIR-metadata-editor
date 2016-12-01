@@ -1,0 +1,11 @@
+<h3>Publish your metadata</h3>
+
+<form>
+    <div class="form-group">
+        <label for="endpoint">FAIR datapoint location</label>
+        <input type="url" class="form-control has-feedback" id="endpoint" ng-model="endpoint" required/>
+        <span ng-show="publishing" class="form-control-feedback spinner"></span>
+    </div>
+
+    <button type="submit" class="btn btn-default" ng-click="publish(endpoint)">Publish</button>
+</form>
