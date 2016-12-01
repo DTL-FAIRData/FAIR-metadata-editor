@@ -117,7 +117,7 @@
         },
         "fdp-metadataidentifier": {
             "name": "Metadata identifier",
-            "url": "fdp#metadataIdentifier",
+            "url": "http://rdf.biosemantics.org/ontologies/fdp-o#metadataIdentifier",
             "type": "url",
             "description": "Identifier of the metadata entry",
             "required": true,
