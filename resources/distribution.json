@@ -17,13 +17,6 @@
             "description": "A name given to the distribution.",
             "required": true
         },
-        "dct-identifier": {
-            "name": "Identifier",
-            "url": "http://purl.org/dc/terms/identifier",
-            "type": "text",
-            "description": "Unique identifier for this resource",
-            "required": true
-        },
         "dct-issued": {
             "name": "Release date",
             "url": "http://purl.org/dc/terms/issued",

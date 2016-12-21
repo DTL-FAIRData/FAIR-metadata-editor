@@ -10,8 +10,15 @@ app.directive('field', function($rootScope, $http) {
     },
     link: function(scope) {
       // testing for nested field collapse
-      scope.toggleCollapse = function() {
+      scope.toggleCollapse = function(forceValue) {
+        if (forceValue !== undefined) {
+          scope.nestedcollapse = Boolean(forceValue);
+        }
         scope.nestedcollapse = !scope.nestedcollapse;
+      };
+
+      scope.test = function() {
+        console.log('test');
       };
 
       scope.triggerHelp = function(field) {

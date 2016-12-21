@@ -20,9 +20,10 @@
             ng-attr-name="{{fid}}"
             ng-attr-type="{{field.type}}"
             ng-attr-id="{{fid}}"
-            ng-focus="triggerHelp(field)"
+            ng-focus="toggleCollapse(false); triggerHelp(field)"
             ng-required="field.required"
-            ng-model="mymodel[field.url].url"/>
+            ng-model="mymodel[field.url].url"
+            placeholder="http://"/>
 
         <field-autocomplete
             ng-if="!field.multiple && field.autocomplete"

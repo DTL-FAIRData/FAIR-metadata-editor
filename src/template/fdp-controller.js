@@ -3,7 +3,7 @@ app.controller('TplFdpCtrl', function($scope, $routeParams, $http, $q, $rootScop
     fdp: 'schema.json',
     catalog: 'catalog.json',
     dataset: 'dataset.json',
-    distrib: 'distribution.json'
+    distribution: 'distribution.json'
   };
 
   var layer = $routeParams.layer || 'fdp';
@@ -43,23 +43,9 @@ app.controller('TplFdpCtrl', function($scope, $routeParams, $http, $q, $rootScop
 
   $scope.showOptionals = $rootScope.state.showOptionals || false;
   $scope.showGenerated = $rootScope.state.showGenerated || false;
+  $scope.active = $rootScope.state.active || 0;
 
-  // $scope.testSelected = function(value) {
-  //   console.log('selected ' + value + ' ??');
-  //   return value;
-  // };
-
-  // $scope.languages = [];
-  // $http.get('languages.json').then(function(response) {
-  //   angular.forEach(response.data, function(lang) {
-  //     $scope.languages.push({
-  //       label: lang,
-  //       url: 'http://id.loc.gov/vocabulary/iso639-1/' + lang
-  //     });
-  //   });
-  // });
-
-  // $scope.selectLanguage = function($item,$model,$label) {
-  //   console.log($item, $model, $label);
-  // };
+  $scope.selectTab = function($selectedIndex) {
+    $rootScope.state.active = $selectedIndex;
+  };
 });

@@ -35,13 +35,13 @@
     </div>
     <div class="col-md-6">
         <uib-tabset active="active">
-            <uib-tab heading="Preview">
+            <uib-tab heading="Preview" deselect="selectTab($selectedIndex)">
                 <preview ng-if="schema"></preview>
             </uib-tab>
-            <uib-tab heading="Help">
+            <uib-tab heading="Help" deselect="selectTab($selectedIndex)">
                 <help></help>
             </uib-tab>
-            <uib-tab heading="Publish">
+            <uib-tab heading="Publish" deselect="selectTab($selectedIndex)">
                 <publish></publish>
             </uib-tab>
         </uib-tabset>

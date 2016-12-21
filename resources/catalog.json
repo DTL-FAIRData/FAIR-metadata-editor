@@ -18,13 +18,6 @@
             "description": "A name given to the catalog.",
             "required": true
         },
-        "dct-identifier": {
-            "name": "Identifier",
-            "url": "http://purl.org/dc/terms/identifier",
-            "type": "text",
-            "description": "Unique identifier for this resource",
-            "required": true
-        },
         "dct-issued": {
             "name": "Release date",
             "url": "http://purl.org/dc/terms/issued",
@@ -52,8 +45,19 @@
             "url": "http://purl.org/dc/terms/publisher",
             "type": "url",
             "description": "The entity responsible for making the catalog online.",
-            "multiple": true,
-            "required": true
+            "required": true,
+            "nested": {
+                "type": "http://xmlns.com/foaf/0.1/Organization",
+                "components": {
+                    "institure-foaf-name": {
+                        "name": "Name",
+                        "url": "http://xmlns.com/foaf/0.1/name",
+                        "type": "text",
+                        "description": "Name of the insitution",
+                        "required": true
+                    }
+                }
+            }
         },
         "dct-description": {
             "name": "Description",

@@ -3,9 +3,23 @@
 <form>
     <div class="form-group">
         <label for="endpoint">FAIR datapoint location</label>
-        <input type="url" class="form-control has-feedback" id="endpoint" ng-model="endpoint" required/>
+        <input type="url" class="form-control has-feedback" id="endpoint" ng-model="endpoint" ng-required/>
         <span ng-show="publishing" class="form-control-feedback spinner"></span>
+    </div>
+    <div class="form-group">
+        <span ng-show="path==='dataset' || path==='distribution'">Catalog:</span>
+        <select ng-model="sel"
+            ng-options="v as v.label for v in catalogs"
+            ng-show="path==='dataset' || path==='distribution'"></select>
+        
+        <span ng-show="sel && path==='distribution'">Dataset:</span>
+        <select ng-model="selds"
+            ng-options="d as d.label for d in datasets"
+            ng-show="sel && path==='distribution'"></select>
     </div>
 
     <button type="submit" class="btn btn-default" ng-click="publish(endpoint)">Publish</button>
+
+    <br>
+    <p ng-if="status">{{status}}</p>
 </form>
